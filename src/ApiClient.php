@@ -30,6 +30,11 @@ class ApiClient
         $promise->then(
             function(ResponseInterface $res) {
                 echo $res->getStatusCode() . "\n";
+
+                // echo all fields from header
+                foreach($res->getHeaders() as $name => $values) {
+                    echo $name . ": " . implode(', ', $values) . "\r\n";
+                }
             },
             function(RequestException $e) {
                 echo $e->getMessage() . "\n";
